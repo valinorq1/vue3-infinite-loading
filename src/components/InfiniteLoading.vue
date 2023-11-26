@@ -3,7 +3,7 @@ import type { Props, Params, State, StateHandler } from "@root/types";
 import { onMounted, ref, toRefs, onUnmounted, watch, nextTick } from "vue";
 import { startObserver, getParentEl, isVisible } from "@root/utils";
 // @ts-ignore
-import Spinner from "./Spinner.vue";
+
 
 const emit = defineEmits<{ infinite: [$state: StateHandler] }>();
 const props = withDefaults(defineProps<Props>(), {
@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<Props>(), {
   distance: 0,
 });
 defineSlots<{
-  spinner(props: {}): any;
+  
   complete(props: {}): any;
   error(props: { retry(): void }): any;
 }>();
@@ -75,11 +75,7 @@ onUnmounted(() => {
 
 <template>
   <div ref="infiniteLoading" style="min-height: 1px">
-    <div v-show="state == 'loading'">
-      <slot name="spinner">
-        <Spinner />
-      </slot>
-    </div>
+    
     <slot v-if="state == 'complete'" name="complete">
       <span> {{ slots?.complete || "No more results!" }} </span>
     </slot>
